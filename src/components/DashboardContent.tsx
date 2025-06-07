@@ -1,5 +1,9 @@
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import GestionarUsuarioForm from './GestionarUsuarioForm';
+import RegistrarEmpresaForm from './RegistrarEmpresaForm';
+import GestionarEmpresaForm from './GestionarEmpresaForm';
+import EditarEmpresaForm from './GestionarEmpresaForm';
+
 
 type DashboardContentProps = {
   userName: string;
@@ -10,7 +14,7 @@ type DashboardContentProps = {
 const DashboardContent = ({ 
   userName, 
   activeOption, 
-  activeSubOption 
+  activeSubOption,
 }: DashboardContentProps) => {
   if (!activeOption) {
     return (
@@ -31,16 +35,37 @@ const DashboardContent = ({
     );
   }
 
-  // Mostrar formulario de registro
-  if (activeOption === 'usuario' && activeSubOption === 'agregar') {
-    return <RegistrarUsuarioForm />;
+  // Formularios de usuario
+  if (activeOption === 'usuario') {
+    switch (activeSubOption) {
+      case 'agregar':
+        return <RegistrarUsuarioForm />;
+      case 'gestionar':
+        return <GestionarUsuarioForm />;
+      default:
+        break;
+    }
   }
 
-  // Mostrar gestión de usuarios
-  if (activeOption === 'usuario' && activeSubOption === 'gestionar') {
-    return <GestionarUsuarioForm />;
+
+
+  // Formularios de empresa
+  if (activeOption === 'empresa') {
+    switch (activeSubOption) {
+      case 'registrar':
+        return <RegistrarEmpresaForm />;
+      case 'gestionar':
+        return <GestionarEmpresaForm />;
+      case 'editar':
+        return <EditarEmpresaForm />;
+      case 'desactivar':
+        return <GestionarEmpresaForm />; 
+      default:
+        break;
+    }
   }
 
+  // Contenido genérico para otras opciones
   return (
     <div className="p-6">
       <h2 className="text-2xl font-bold text-cyan-800 mb-4 capitalize">{activeOption}</h2>
@@ -50,16 +75,13 @@ const DashboardContent = ({
       
       <div className="bg-white rounded-xl shadow-lg p-6">
         <p className="text-gray-600">
-          Contenido de la opción seleccionada. Aquí iría la funcionalidad específica para 
-          <span className="font-semibold"> {activeOption}</span>
-          {activeSubOption && (
-            <span> / <span className="font-semibold">{activeSubOption}</span></span>
-          )}
-        </p>
+          Este es el menu de:
+          <span className="font-semibold"> {activeOption}</span>    
+         </p>
+         <p className="text-gray-600">Porfavor seleccione una opcion para continuar</p>
+
         
-        <div className="mt-8 flex justify-center">
-          <div className="bg-gray-200 border-2 border-dashed rounded-xl w-16 h-16" />
-        </div>
+
       </div>
     </div>
   );

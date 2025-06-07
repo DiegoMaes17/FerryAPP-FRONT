@@ -54,12 +54,6 @@ const Sidebar = ({
               >
                 Gestionar
               </div>
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'editar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('editar')}
-              >
-                Editar
-              </div>
             </div>
           )}
           
@@ -98,37 +92,51 @@ const Sidebar = ({
       return (
         <>
           <div 
-            className={`px-4 py-3 cursor-pointer ${activeOption === 'empresa' ? 'bg-cyan-700' : 'hover:bg-cyan-700'}`}
-            onClick={() => setActiveOption(activeOption === 'empresa' ? '' : 'empresa')}
+            className={`px-4 py-3 cursor-pointer ${activeOption === 'gestión' ? 'bg-cyan-700' : 'hover:bg-cyan-700'}`}
+            onClick={() => setActiveOption(activeOption === 'gestión' ? '' : 'gestión')}
           >
             <div className="flex justify-between items-center">
-              <span>Empresa</span>
-              <span>{activeOption === 'empresa' ? '▲' : '▼'}</span>
+              <span>Gestión</span>
+              <span>{activeOption === 'gestión' ? '▲' : '▼'}</span>
             </div>
           </div>
           
-          {activeOption === 'empresa' && (
+          {activeOption === 'gestión' && (
             <div className="bg-cyan-900 pl-8">
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'agregar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('agregar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'usuario' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('usuario')}
               >
-                Agregar
+                Usuario
               </div>
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'desactivar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('desactivar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'gestionar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('gestionar')}
               >
-                Desactivar
+                Empresa
+              </div>              
+              
+              <div 
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'ver facturas' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('ver facturas')}
+              >
+                Ver facturas
               </div>
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'editar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('editar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'ver empleados' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('ver empleados')}
               >
-                Editar
+                Ver empleados
+              </div>
+              <div 
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'dashboard de ingresos' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('dashboard de ingresos')}
+              >
+                Dashboard de ingresos
               </div>
             </div>
           )}
+
           
           <div 
             className={`px-4 py-3 cursor-pointer ${activeOption === 'ferry' ? 'bg-cyan-700' : 'hover:bg-cyan-700'}`}
@@ -196,38 +204,7 @@ const Sidebar = ({
             </div>
           )}
           
-          <div 
-            className={`px-4 py-3 cursor-pointer ${activeOption === 'gestión' ? 'bg-cyan-700' : 'hover:bg-cyan-700'}`}
-            onClick={() => setActiveOption(activeOption === 'gestión' ? '' : 'gestión')}
-          >
-            <div className="flex justify-between items-center">
-              <span>Gestión</span>
-              <span>{activeOption === 'gestión' ? '▲' : '▼'}</span>
-            </div>
-          </div>
-          
-          {activeOption === 'gestión' && (
-            <div className="bg-cyan-900 pl-8">
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'ver facturas' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('ver facturas')}
-              >
-                Ver facturas
-              </div>
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'ver empleados' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('ver empleados')}
-              >
-                Ver empleados
-              </div>
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'dashboard de ingresos' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('dashboard de ingresos')}
-              >
-                Dashboard de ingresos
-              </div>
-            </div>
-          )}
+
         </>
       );
     }
