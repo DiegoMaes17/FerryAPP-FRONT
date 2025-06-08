@@ -104,12 +104,6 @@ const Sidebar = ({
           {activeOption === 'gestión' && (
             <div className="bg-cyan-900 pl-8">
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'usuario' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('usuario')}
-              >
-                Usuario
-              </div>
-              <div 
                 className={`py-2 px-4 cursor-pointer ${activeSubOption === 'gestionar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
                 onClick={() => setActiveSubOption('gestionar')}
               >

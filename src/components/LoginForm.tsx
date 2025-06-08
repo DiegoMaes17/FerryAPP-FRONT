@@ -25,22 +25,43 @@ const LoginForm = () => {
     setIsLoading(true);
 
     try {
+      // Enviar las credenciales 
       const response = await axios.post('/api/login', {
-        usuario: credentials
+        usuario: {
+          usuario: credentials.usuario,
+          contrasena: credentials.contrasena
+        }
       });
       
       // Guardar token en localStorage
       localStorage.setItem('token', response.data.token);
 
-      //Guardar datos del usuario
+      // Guardar datos del usuario
       localStorage.setItem('userName', credentials.usuario);
       localStorage.setItem('userType', response.data.tipo);
+      localStorage.setItem('userRif', response.data.rif_cedula);
       
       // Redirigir al dashboard
       navigate('/dashboard');
-    } catch (err) {
-      setError('Credenciales incorrectas. Por favor, inténtalo de nuevo.');
-      console.error('Login error:', err);
+
+    } catch (err: any) {
+      // Manejo de errores específicos
+      if (axios.isAxiosError(err)) {
+        if (err.response) {
+          // Extraer el mensaje de error del backend
+          if (err.response.data && err.response.data.error) {
+            setError(err.response.data.error);
+          } else {
+            setError('Error en el servidor');
+          }
+        } else if (err.request) {
+          setError('No se pudo conectar con el servidor');
+        } else {
+          setError('Error inesperado');
+        }
+      } else {
+        setError('Error desconocido: ' + err.message);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -98,7 +119,7 @@ const LoginForm = () => {
           </div>
           
           {error && (
-            <div className="text-red-500 text-sm bg-red-50 py-2 px-4 rounded-lg">
+            <div className="text-red-500 text-sm bg-red-50 py-2 px-4 rounded-lg animate-fadeIn">
               {error}
             </div>
           )}
@@ -142,6 +163,7 @@ const LoginForm = () => {
       <div className="absolute bottom-0 left-0 right-0 h-16 bg-cyan-700 opacity-20"></div>
       <div className="absolute bottom-4 left-10 w-24 h-8 bg-cyan-800 rounded-t-full opacity-30"></div>
       <div className="absolute bottom-4 right-10 w-16 h-8 bg-cyan-800 rounded-t-full opacity-30"></div>
+      
     </div>
   );
 };

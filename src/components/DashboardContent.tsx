@@ -1,18 +1,21 @@
+// src/components/DashboardContent.tsx
+
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import GestionarUsuarioForm from './GestionarUsuarioForm';
 import RegistrarEmpresaForm from './RegistrarEmpresaForm';
-import GestionarEmpresaForm from './GestionarEmpresaForm';
+import GestionarEmpresaForm from './GestionarEmpresaForm'; // El formulario que vamos a modificar
 import EditarEmpresaForm from './GestionarEmpresaForm';
-
 
 type DashboardContentProps = {
   userName: string;
+  userType: string; 
   activeOption: string;
   activeSubOption: string;
 };
 
 const DashboardContent = ({ 
   userName, 
+  userType, 
   activeOption, 
   activeSubOption,
 }: DashboardContentProps) => {
@@ -35,7 +38,7 @@ const DashboardContent = ({
     );
   }
 
-  // Formularios de usuario
+  // Formularios de usuario (para Administrador)
   if (activeOption === 'usuario') {
     switch (activeSubOption) {
       case 'agregar':
@@ -47,19 +50,30 @@ const DashboardContent = ({
     }
   }
 
-
-
-  // Formularios de empresa
+  // Formularios de empresa (para Administrador)
   if (activeOption === 'empresa') {
     switch (activeSubOption) {
       case 'registrar':
         return <RegistrarEmpresaForm />;
       case 'gestionar':
-        return <GestionarEmpresaForm />;
+        // El admin ve el buscador
+        return <GestionarEmpresaForm userType="Administrador" />;
       case 'editar':
         return <EditarEmpresaForm />;
       case 'desactivar':
-        return <GestionarEmpresaForm />; 
+        return <GestionarEmpresaForm userType="Administrador" />; 
+      default:
+        break;
+    }
+  }
+
+
+  // Opciones de gestión para el usuario "empresa"
+  if (activeOption === 'gestión') {
+    switch (activeSubOption) {
+      case 'gestionar':
+        return <GestionarEmpresaForm userType={userType} />;
+      
       default:
         break;
     }
@@ -76,12 +90,9 @@ const DashboardContent = ({
       <div className="bg-white rounded-xl shadow-lg p-6">
         <p className="text-gray-600">
           Este es el menu de:
-          <span className="font-semibold"> {activeOption}</span>    
+          <span className="font-semibold"> {activeOption}</span>   
          </p>
          <p className="text-gray-600">Porfavor seleccione una opcion para continuar</p>
-
-        
-
       </div>
     </div>
   );

@@ -1,3 +1,5 @@
+// src/components/Dashboard.tsx
+
 import { useState, useEffect } from 'react';
 import DashboardLayout from './layout/DashboardLayout';
 import DashboardContent from './DashboardContent';
@@ -10,6 +12,7 @@ const Dashboard = () => {
   const [activeSubOption, setActiveSubOption] = useState('');
 
   useEffect(() => {
+    // Asumimos que el RIF se guarda en localStorage como 'userRif' al iniciar sesión
     const storedUserName = localStorage.getItem('userName') || 'Usuario';
     const storedUserType = localStorage.getItem('userType') || 'administrador';
     
@@ -47,6 +50,7 @@ const Dashboard = () => {
           <div className="flex-1 p-6 overflow-y-auto">
             <DashboardContent 
               userName={userName}
+              userType={userType} 
               activeOption={activeOption}
               activeSubOption={activeSubOption}
             />

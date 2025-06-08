@@ -138,7 +138,7 @@ const GestionarUsuarioForm = () => {
     setIsLoading(true);
 
     try {
-      const response = await fetch(`/api/usuario/${usuario.rif_cedula}/cambiar-contrasena`, {
+      const response = await fetch(`/api/usuarios/${usuario.rif_cedula}/contrasena-personal`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

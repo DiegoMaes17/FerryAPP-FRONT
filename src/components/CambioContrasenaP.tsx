@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 
-const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
+interface CambiarContrasenaPersonalProps {
+  userId: string;
+  onclose?: (ev?: React.SyntheticEvent) => void;
+}
+
+const CambiarContrasenaPersonal = ({ userId, onclose }: CambiarContrasenaPersonalProps) => {
   const [formData, setFormData] = useState({
     contrasenaActual: '',
     nuevaContrasena: '',
@@ -34,7 +39,7 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
     setSuccess('');
 
     try {
-      const response = await fetch(`/api/usuario/${userId}/cambiar-contrasena-personal`, {
+      const response = await fetch(`/api/usuarios/${userId}/contrasena-personal`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -58,6 +63,11 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
         nuevaContrasena: '',
         confirmarContrasena: '',
       });
+      if (onclose) {
+        setTimeout(()=>{
+          onclose();
+        }, 1500);
+      }
     } catch (err: any) {
       setError(err.message || 'Error al cambiar contraseña');
     } finally {
@@ -67,7 +77,7 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
 
   return (
     <div className="bg-white rounded-xl shadow-lg p-6 max-w-md mx-auto">
-      <h3 className="text-xl font-bold text-cyan-800 mb-4">Cambiar Mi Contraseña</h3>
+      <h3 className="text-xl font-bold text-cyan-800 mb-4">Cambiar mi Contraseña</h3>
       
       <form onSubmit={handleSubmit} className="space-y-4">
         {error && (
@@ -124,7 +134,14 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
           />
         </div>
         
-        <div className="flex justify-end">
+        <div className="flex justify-end gap-3">
+       
+            <button type="button"
+            onClick={onclose}
+            className='bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-lg'>
+              Cancelar
+            </button>
+    
           <button
             type="submit"
             disabled={isLoading}

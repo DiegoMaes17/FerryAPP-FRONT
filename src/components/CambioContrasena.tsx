@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
+const CambiarContrasena = ({ userId }: { userId: string }) => {
   const [formData, setFormData] = useState({
     contrasenaActual: '',
     nuevaContrasena: '',
@@ -34,7 +34,7 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
     setSuccess('');
 
     try {
-      const response = await fetch(`/api/usuario/${userId}/cambiar-contrasena-personal`, {
+      const response = await fetch(`/api/usuarios/${userId}/contrasena-personal`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -144,4 +144,4 @@ const CambiarContrasenaPersonal = ({ userId }: { userId: string }) => {
   );
 };
 
-export default CambiarContrasenaPersonal;
+export default CambiarContrasena;
