@@ -145,22 +145,16 @@ const Sidebar = ({
           {activeOption === 'ferry' && (
             <div className="bg-cyan-900 pl-8">
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'agregar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('agregar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'registrar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('registrar')}
               >
-                Agregar
+                Registrar
               </div>
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'desactivar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('desactivar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'gestionar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('gestionar')}
               >
-                Desactivar
-              </div>
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'editar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('editar')}
-              >
-                Editar
+                Gestionar
               </div>
             </div>
           )}
@@ -178,22 +172,16 @@ const Sidebar = ({
           {activeOption === 'empleado' && (
             <div className="bg-cyan-900 pl-8">
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'agregar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('agregar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'registrar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('registrar')}
               >
-                Agregar
+                Registrar
               </div>
               <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'desactivar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('desactivar')}
+                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'gestionar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
+                onClick={() => setActiveSubOption('gestionar')}
               >
-                Desactivar
-              </div>
-              <div 
-                className={`py-2 px-4 cursor-pointer ${activeSubOption === 'editar' ? 'text-cyan-300' : 'hover:text-cyan-300'}`}
-                onClick={() => setActiveSubOption('editar')}
-              >
-                Editar
+                Gestionar
               </div>
             </div>
           )}

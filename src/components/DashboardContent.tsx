@@ -1,10 +1,16 @@
-// src/components/DashboardContent.tsx
-
 import RegistrarUsuarioForm from './RegistrarUsuarioForm';
 import GestionarUsuarioForm from './GestionarUsuarioForm';
 import RegistrarEmpresaForm from './RegistrarEmpresaForm';
-import GestionarEmpresaForm from './GestionarEmpresaForm'; // El formulario que vamos a modificar
+import GestionarEmpresaForm from './GestionarEmpresaForm'; 
 import EditarEmpresaForm from './GestionarEmpresaForm';
+
+
+import RegistrarEmpleadoForm from './RegistrarEmpleadoForm';
+import GestionarEmpleadosWrapper from './GestionarEmpleadoForm';
+
+import RegistrarFerryForm from './RegistrarFerryForm';
+import GestionarFerrysForm from './GestionarFerryForm';
+
 
 type DashboardContentProps = {
   userName: string;
@@ -56,7 +62,6 @@ const DashboardContent = ({
       case 'registrar':
         return <RegistrarEmpresaForm />;
       case 'gestionar':
-        // El admin ve el buscador
         return <GestionarEmpresaForm userType="Administrador" />;
       case 'editar':
         return <EditarEmpresaForm />;
@@ -67,17 +72,40 @@ const DashboardContent = ({
     }
   }
 
-
   // Opciones de gestión para el usuario "empresa"
   if (activeOption === 'gestión') {
     switch (activeSubOption) {
       case 'gestionar':
         return <GestionarEmpresaForm userType={userType} />;
-      
       default:
         break;
     }
   }
+
+  // --- NUEVA SECCIÓN PARA GESTIÓN DE EMPLEADOS ---
+  // (Accesible por el tipo de usuario 'empresa')
+  if (activeOption === 'empleado') {
+    switch (activeSubOption) {
+      case 'registrar':
+        return <RegistrarEmpleadoForm />;
+      case 'gestionar':
+        return <GestionarEmpleadosWrapper />;
+      default:
+        break;
+    }
+  }
+
+    if (activeOption === 'ferry') {
+    switch (activeSubOption) {
+      case 'registrar':
+        return <RegistrarFerryForm />;
+      case 'gestionar':
+        return <GestionarFerrysForm />;
+      default:
+        break;
+    }
+  }
+
 
   // Contenido genérico para otras opciones
   return (
